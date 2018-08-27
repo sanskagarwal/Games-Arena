@@ -142,7 +142,11 @@ function whatNow(dataTo) {
 			classEdu="education2";
 		else
 			classEdu="education3";
-		presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dataTo[i]['genre']+"</h6><div class='belowOne'><h5>"+dataTo[i]['title']+"</h5></div><div><div><span class='stars'>"+dataTo[i].score+"</span></div><div class='circleText'>"+dataTo[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dataTo[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dataTo[i].release_year+"</span></div></div></a></span></div>";
+		if(dataTo[i]["editors_choice"]==='Y') {
+			presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'><img src='assets/css/icons/ribbon.svg'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dataTo[i]['genre']+"</h6><div class='belowOne'><h5>"+dataTo[i]['title']+"</h5></div><div><div><span class='stars'>"+dataTo[i].score+"</span></div><div class='circleText'>"+dataTo[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dataTo[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dataTo[i].release_year+"</span></div></div></a></span></div>";
+		}
+		else 
+			presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dataTo[i]['genre']+"</h6><div class='belowOne'><h5>"+dataTo[i]['title']+"</h5></div><div><div><span class='stars'>"+dataTo[i].score+"</span></div><div class='circleText'>"+dataTo[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dataTo[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dataTo[i].release_year+"</span></div></div></a></span></div>";
 	}
 	$('span.stars').stars();
 	addLiHtml(dataTo,dataTo.length);
@@ -153,7 +157,7 @@ function addLiHtml(dat,len) {
 	$('#paging').bootpag({
 	    total: noOf,
 	    page: 1,
-	    maxVisible: 10,
+	    maxVisible: 5,
 	    leaps: true,
 	    firstLastUse: true,
 	    wrapClass: 'pagination',
@@ -183,8 +187,12 @@ function addLiHtml(dat,len) {
 				classEdu="education2";
 			else
 				classEdu="education3";
-			presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dat[i]['genre']+"</h6><div class='belowOne'><h5>"+dat[i]['title']+"</h5></div><div><div><span class='stars'>"+dat[i].score+"</span></div><div class='circleText'>"+dat[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dat[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dat[i].release_year+"</span></div></div></a></span></div>";
-		}
+			if(dat[i]["editors_choice"]==='Y') {
+				presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'><img src='assets/css/icons/ribbon.svg'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dat[i]['genre']+"</h6><div class='belowOne'><h5>"+dat[i]['title']+"</h5></div><div><div><span class='stars'>"+dat[i].score+"</span></div><div class='circleText'>"+dat[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dat[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dat[i].release_year+"</span></div></div></a></span></div>";
+			}
+			else 
+				presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dat[i]['genre']+"</h6><div class='belowOne'><h5>"+dat[i]['title']+"</h5></div><div><div><span class='stars'>"+dat[i].score+"</span></div><div class='circleText'>"+dat[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dat[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dat[i].release_year+"</span></div></div></a></span></div>";
+			}
 		$('span.stars').stars(); 
 	});
 }
@@ -243,10 +251,12 @@ $(".autocomplete button").on("click", function(event) {
 	}
 });
 
-$(".autocomplete button").keypress(function (e) {
+$(".autocomplete input").keypress(function (e) {
 	if($("#myInput").val()!=="") {
+		//console.log("1");
 	 	var key = e.which;
 	 	if(key == 13) {
+	 	//	console.log("1");
 		    var substring=$("#myInput").val().toString().toLowerCase();
 			var renderData=[];
 			for(var i=0;i<workData.length;i++) {

@@ -17,28 +17,39 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm navbar-light fixed-top">
-	  <div class="container">
-	  	<form autocomplete="off">
-		  <div class="autocomplete" style="width:200px;">
+	<div class="topnav fixed-top" id="myTopnav">
+		<div class="wrapper">
+			<div class="autocomplete" style="width: 50%">
+			    <input id="myInput" type="text" name="myCountry" placeholder="Search...">
+			    <button type="submit"><i class="fas fa-search"></i></button>
+			</div>
+
+			<a id="filterToggle" href="#filterNavContain"><u>EXPLORE GAMES</u></a>
+		</div>
+	</div>
+	<!-- <nav class="navbar navbar-expand-sm navbar-light fixed-top">
+	  <div class="conatiner">
+	  	<form autocomplete="off" style="width: 50%">
+		  <div class="autocomplete">
 		    <input id="myInput" type="text" name="myCountry" placeholder="Search...">
 		    <button type="submit"><i class="fas fa-search"></i></button>
 		  </div>
 		</form>
-	  	<a id="filterToggle" href="#filterNavContain"><u>EXPLORE GAMES</u></a>
+		<span style="width: 50%"><a id="filterToggle" href="#filterNavContain"><u>EXPLORE GAMES</u></a></span>
 	  </div>
-	</nav>
+	</nav> -->
 	
 	<div id="navBelow">
 		<h1>GAMES ARENA</h1>
 		<h4 style="color: white">Only place to discover ultimate games</h3>
 	</div>
+
 	<div id="filterNavContain">
 		<div style="text-align: center;">
-				<button class="dropbtn" id="resetFilter" style="height: 32px">RESET FILTERS</button>
-			</div>
-		<div id="filterNav">
+			<button class="dropbtn" id="resetFilter" style="height: 32px">RESET FILTERS</button>
+		</div>
 
+		<div id="filterNav">
 			<div class="dropdown" id="drop1">
 				<h4 style="font-family: 'Baloo Bhai', cursive;">Filter By</h4>
 				<button class="dropbtn">Rating<i class="fa fa-caret-down"></i></button>

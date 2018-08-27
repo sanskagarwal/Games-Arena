@@ -2,10 +2,6 @@
 body {
     padding-top: 60px;
 }
-.navbar {
-    min-height: 60px;
-	background: #563d7c;
-}
 
 *:focus {
    outline: none !important;
@@ -17,32 +13,67 @@ i {
   padding: 0.5em 0.6em;
 }
 
+.topnav {
+    background-color: #563d7c;
+    overflow: hidden;
+    height: 60px;
+}
+
+.wrapper {
+  width: 96%;
+  padding: 0 2%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+
+.wrapper a {
+  margin-top: 20px;
+  float: right;
+}
+
 input[type=text] {
-    border-radius: 6px;
-	padding-left: 5px;
-	border: none;
-	height: 32px;
-    width: 100px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+  border-radius: 2px;
+  padding-left: 5px;
+  border: none;
+  width: 50%;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
 
 input[type=text]:focus {
-    width: 80%;
+    width: 70%;
+}
+
+#filterToggle {
+    font-family: 'Baloo Bhai', cursive;
+    color: #cbbde2;
+}
+
+#filterToggle:hover {
+    color: white;
 }
 
 .autocomplete {
-  position: relative;
-  display: inline-block;
+  /*position: relative;
+  display: inline-block;*/
+  margin-top: 15px;
+  float: left;
 }
 
-.autocomplete-items {
+/*.autocomplete-items {
   position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
 }
 
 .autocomplete-items div {
-  width: 160px;
-  border-radius: 6px;
   padding: 10px;
   cursor: pointer;
   background-color: #fff; 
@@ -52,9 +83,14 @@ input[type=text]:focus {
 .autocomplete-items div:hover {
   background-color: #e9e9e9; 
 }
+*/
+/*.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}*/
 
 button {
-    font-family: 'Baloo Bhai', cursive !important;
+  font-family: 'Baloo Bhai', cursive !important;
 	padding: 0;
 	background: transparent;
 	border: none;
@@ -64,8 +100,41 @@ i:hover {
 	box-shadow: 0 0 11px rgba(65,33,33,.2);
 }
 
+#navBelow {
+    max-width: 1400px;
+    height: 618px;
+    background-image: url('img/v4Qykv.png');
+    background-size:cover;
+    padding-left: 10%;
+    padding-top: 150px;
+    color: yellow;
+    font-family: 'Fredoka One', cursive;
+}
+
+
+#filterNavContain {
+    background: #d5dae2;
+}
+
+#filterNav span {
+  display: inline-block;    
+  font-family: 'Indie Flower', cursive;
+}
+
+#filterNav {
+  width: 96%;
+  padding: 0 2%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#filterHide:hover {
+    background-color: #3e8e41;
+}
+
 .dropbtn {
-	min-width:180px;
+    max-width: 180px;
+    width: 100%;
     background-color: #4CAF50;
     color: white;
     padding: 8px;
@@ -83,7 +152,7 @@ i:hover {
     position: absolute;
     background-color: #f1f1f1;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-    z-index: 2;
+    z-index: 200;
 }
 
 .dropdown:hover .dropdown-content {
@@ -96,12 +165,12 @@ i:hover {
 
 input[type=radio] {
 	margin-right: 5px;
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 input[type=checkbox] {
 	margin-right: 5px;
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 i:hover {
@@ -111,42 +180,6 @@ i:hover {
 button:hover {
 	cursor: pointer;
 }
-
-#filterToggle {
-    font-family: 'Baloo Bhai', cursive;
-    color: #cbbde2;
-}
-
-#filterToggle:hover {
-    color: white;
-}
-
-#filterNav span {
-    font-family: 'Indie Flower', cursive;
-}
-
-#navBelow {
-    max-width: 1400px;
-    height: 618px;
-    background-image: url('img/v4Qykv.png');
-    background-size:cover;
-    padding-left: 10%;
-    padding-top: 150px;
-    color: yellow;
-    font-family: 'Fredoka One', cursive;
-}
-
-#filterNavContain {
-    background: #d5dae2;
-}
-
-#filterNav {
-    padding-left: 10%;
-}
-
-#filterHide:hover {
-    background-color: #3e8e41;
-} 
 
 .pagination {
     display: inline-block !important;
@@ -203,10 +236,11 @@ button:hover {
 }
 
 .card {
+  margin-bottom: 10px;
   text-align: center;
   padding-top: 15px;
-  width: 250px;
-  height: 414px;
+  width: 100%;
+  height: 434px;
   background: #fff;
   border-top-right-radius: 10px;
   align-items: center;
@@ -296,7 +330,7 @@ span.stars span {
 }
 
 .belowOne {
-    height: 80px;
+    height: 100px;
 } 
 
 .circleText {
@@ -328,17 +362,20 @@ a h6 {
 }
 
 .questans {
-    width: 250px !important;
+    width: 100% !important;
     background-color: orange !important;
 }
-/*.left {
-    width: 250px !important;
-    margin-left: 10px !important;
-    float: left !important;
+
+.starred {
+  position: absolute;  
+  right: 0;  
+  top: 0;
+  float: right ;
+  z-index: 100;
+  height: 40px;
 }
 
-.right {
-    width: 250px !important;
-    margin-right: 10px !important;
-    float: right !important;
-}*/
+.starred img {
+  width: 40px;
+  height: 40px;
+}
