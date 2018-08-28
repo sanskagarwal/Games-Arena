@@ -117,13 +117,12 @@ request.onload = function() {
 	}
 	workData=data.slice(0);
 	whatNow(workData);
-	autocomplete(document.getElementById("myInput"), titles);
+	autocomplete(titles);
 }
 
 function whatNow(dataTo) {
 	$("#mainData .row").html("");
 	$("#paging").html("");
-	console.log(dataTo.length);
 	for(var i=0;i<48&&i<dataTo.length;i++) {
 		var myH5 = document.createElement('h5'),classEdu;
 		myH5.textContent = dataTo[i]['title'];
@@ -147,6 +146,9 @@ function whatNow(dataTo) {
 		}
 		else 
 			presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dataTo[i]['genre']+"</h6><div class='belowOne'><h5>"+dataTo[i]['title']+"</h5></div><div><div><span class='stars'>"+dataTo[i].score+"</span></div><div class='circleText'>"+dataTo[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dataTo[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dataTo[i].release_year+"</span></div></div></a></span></div>";
+	}
+	if(dataTo.length===0) {
+		presentData.innerHTML="<p style='margin: 50px auto 200px auto; font-size: 68px'>No results Found :(</p>";
 	}
 	$('span.stars').stars();
 	addLiHtml(dataTo,dataTo.length);
@@ -199,42 +201,14 @@ function addLiHtml(dat,len) {
 
 // autocomplete+ search bar
 
-function autocomplete(inp, arr) {
-	var currentFocus;
-	inp.addEventListener("input", function(e) {
-		var a, b, i, val = this.value;
-		closeAllLists();
-		if (!val) { return false;}
-		currentFocus = -1;
-		a = document.createElement("DIV");
-		a.setAttribute("id", this.id + "autocomplete-list");
-		a.setAttribute("class", "autocomplete-items");
-		this.parentNode.appendChild(a);
-		for (i = 0; i < arr.length; i++) {
-		    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-			    b = document.createElement("DIV");
-			    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-			    b.innerHTML += arr[i].substr(val.length);
-			    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-			    b.addEventListener("click", function(e) {
-			        inp.value = this.getElementsByTagName("input")[0].value;
-			        closeAllLists();
-			    });
-			    a.appendChild(b);
-		    }
-		}
-	});
-	function closeAllLists(elmnt) {
-		var x = document.getElementsByClassName("autocomplete-items");
-		for (var i = 0; i < x.length; i++) {
-		    if (elmnt != x[i] && elmnt != inp) {
-		        x[i].parentNode.removeChild(x[i]);
-		    }
-		}
-	}
-	document.addEventListener("click", function (e) {
-		closeAllLists(e.target);
-	});
+function autocomplete(arr) {
+	$( "#myInput" ).autocomplete({
+		minLength: 3,
+		source: function(request, response) {
+	        var results = $.ui.autocomplete.filter(arr, request.term);
+	        response(results.slice(0, 15));
+	    }
+    });
 }
 
 $(".autocomplete button").on("click", function(event) {
@@ -253,10 +227,8 @@ $(".autocomplete button").on("click", function(event) {
 
 $(".autocomplete input").keypress(function (e) {
 	if($("#myInput").val()!=="") {
-		//console.log("1");
 	 	var key = e.which;
 	 	if(key == 13) {
-	 	//	console.log("1");
 		    var substring=$("#myInput").val().toString().toLowerCase();
 			var renderData=[];
 			for(var i=0;i<workData.length;i++) {
@@ -373,7 +345,7 @@ $("#filterIcon").on("click",function() {
 	var subtitles=[];
 	for(var i=0;i<workData2.length;i++)
 		subtitles.push(workData2[i].title);
-	autocomplete(document.getElementById("myInput"), subtitles);
+	autocomplete(subtitles);
 });
 
 // Reset filter
@@ -382,7 +354,7 @@ $("#resetFilter").on("click",function() {
 	$('.dropdown input').prop('checked', false);
 	workData=data.slice(0);
 	whatNow(workData);
-	autocomplete(document.getElementById("myInput"), titles);
+	autocomplete(titles);
 });
 
 // Ratings(Star) Feature
@@ -392,151 +364,3 @@ $.fn.stars = function() {
         $(this).html($('<span />').width(Math.max(0, (Math.min(10, parseFloat($(this).html())))) * 16));
     });
 }
-
-// To add "No result found" menu.....
-
-
-// extra part(Tried and refused)
-
-/*function addLihtml(len) {
-	$("#paging div").pagination({
-        items: len,
-        itemsOnPage: 24,
-    });
-}
-*/
-
-/*function addLiHtml(dataLength) {
-	var y=document.getElementsByClassName("pagination")[0];
-	$(".pagination a").off("click");
-	$("a").off("click");
-	y.innerHTML="";
-	y.innerHTML+=("<a href='#filterNavContain' id='previousButton'>&laquo;</a>");
-	var pages=parseInt(Math.ceil(dataLength/24));
-	for(var i=1;i<=pages;i++) {
-		if(i!=1)
-			y.innerHTML+="<a href='#filterNavContain'>" + i + "</a>";
-		else
-			y.innerHTML+="<a href='#filterNavContain' class='active'>" + i + "</a>";
-	}
-	y.innerHTML+="<a href='#filterNavContain' id='nextButton'>&raquo;</a>";
-	addClick(pages);
-};
-
-function addClick(noOfPages) {
-	$(".pagination a").on("click",function() {
-		if($(this).hasClass("active")||$(this).index()==0||$(this).index()==noOfPages+1) {
-			return false;
-		}
-		else {
-			var curr=$(this).index();
-			$(".pagination a").removeClass("active");
-			$(this).addClass("active");
-			$("#mainData h5").hide();
-			for(var i=24*curr-24;i<24*curr;i++) {
-				$("#mainData h5:eq("+i+")").show();
-			}
-		}
-	});
-};*/
-
-
-	/*inp.addEventListener("keydown", function(e) {
-		var x = document.getElementById(this.id + "autocomplete-list");
-		if (x) x = x.getElementsByTagName("div");
-		if (e.keyCode == 40) {
-		    currentFocus++;
-		    addActive(x);
-        } else if (e.keyCode == 38) {
-		    currentFocus--;
-		    addActive(x);
-		} else if (e.keyCode == 13) {
-		    e.preventDefault();
-		    if (currentFocus > -1) {
-		        if (x) x[currentFocus].click();
-		    }
-		}
-	});
-	function addActive(x) {
-		if (!x) return false;
-		removeActive(x);
-		if (currentFocus >= x.length) currentFocus = 0;
-		if (currentFocus < 0) currentFocus = (x.length - 1);
-		x[currentFocus].classList.add("autocomplete-active");
-	}
-	function removeActive(x) {
-		for (var i = 0; i < x.length; i++) {
-		    x[i].classList.remove("autocomplete-active");
-		}
-	}*/
-
-
-
-/*function addClick() {
-	var x=document.querySelectorAll(".pagination a");
-	for(var i=1;i<x.length;i++) {
-		x[i].addEventListener("click",function() {
-			for(var j=1;j<x.length;j++) {
-				x[j].classList.remove("active");
-			}
-			this.classList.add("active");
-		});
-	}
-};
-*/
-
-
-
-
-/*$("#nextButton").on("click",function() {
-		var curPage=$(".pagination a.active").index();
-		if(curPage==5) {
-			return false;
-		}
-		else {
-			curPage++;
-			$(".pagination a").removeClass("active");
-			$("#mainData h5").hide();
-			$(".pagination a:eq("+(curPage-1)+")").addClass("active");
-			for(var i=24*curPage-24;i<24*curPage;i++) {
-				$("#mainData h5:eq("+i+")").show();
-			}
-		}
-	});
-	$("#previousButton").on("click",function() {
-		var curPage=$(".pagination a.active").index();
-		if(curPage==1) {
-			return false;
-		}
-		else {
-			curPage--;
-			$(".pagination a").removeClass("active");
-			$("#mainData h5").hide();
-			$(".pagination a:eq("+(curPage-1)+")").addClass("active");
-			for(var i=24*curPage-24;i<24*curPage;i++) {
-				$("#mainData h5:eq("+i+")").show();
-			}
-		}
-	});*/
-
-/*
-
-*/
-/*function loadJsonFile() {
-	$.getJSON("gamesext.json", function (value) {
-	    data=value;
-	    
-	});	
-}*/
-
-
-
-
-
-
-
-/*
-var init=24*(i-1);
-			for(var i=init;i<(init+24)&&i<=200;i++) {
-				console.log(data[i]['title']);
-			}*/
