@@ -1,3 +1,5 @@
+Note: This project is a part of Online Hackathon https://hackbenchers.hackerearth.com/
+
 # A Game Searching portal
 
 Searching Games was never so easy and interactive, with this app you just need to search and go..
