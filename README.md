@@ -6,19 +6,31 @@ Searching Games was never so easy and interactive, with this app you just need t
 
 ## Prerequisites
 
-1. A good internet connection
-2. A modern browser
+ - A modern browser
+ - Node Installed
+ - Git (Optional)
 
 ## Getting Started 
 
-1. Copy the whole directory to your pc
-2. Open index.html file and wait for 5-10 s to load( Depends on Internet Speed )
+1. Clone the directory using git
+```sh
+$ git clone https://github.com/skbro/Games-Arena.git
+```
+or, Just download the directory as a zip file
+2. Install all required Dependencies
+```sh
+$ npm install
+```
+3. Start node server 
+```sh
+$ node server.js
+```
+4. Go to localhost:3000
 
-## Instructions
-
+## Features
 This section will walk you through the navigation in the webpage
 
-### fixed nav
+### Fixed nav
 
 The first thing that opens up is a navbar which is fixed on top, it contains a search bar and a link 'Explore Games'
 
@@ -29,15 +41,15 @@ The first thing that opens up is a navbar which is fixed on top, it contains a s
 
 #### Explore Games
 
-1. After searching click 'EXPLORE GAMES' to jump to games where you will find games along with filters
+ - After searching click 'EXPLORE GAMES' to jump to games where you will find games along with filters
 
 ###  Filters
 
-The filter section contains many dropdown buttons with differnet functionality
+ - The filter section contains many dropdown buttons with differnet functionality
 
 #### RESET filter
 
-Enter this button to reset every filter or search result
+ - Enter this button to reset every filter or search result
 
 #### Filter By 
 
@@ -52,9 +64,9 @@ Enter this button to reset every filter or search result
 
 ### Games 
 
-This section consists of games shown in beautiful cards:
+This section consists of games shown using css cards:
 
-1. Firstly, the card contains information about Genre( using icon and text below it)
+1. Firstly, the card contains information about Genre(using icon and text below it)
 2. Then a star is made on right if it is editor's choice
 3. Then it consists Game name, Ratings in Star, Ratings in Number, Platform, and lastly Release year
 
@@ -62,6 +74,3 @@ This section consists of games shown in beautiful cards:
 ## End
 
 Enjoy Exploring Games!!! 
-
-
-

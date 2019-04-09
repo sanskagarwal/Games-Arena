@@ -103,7 +103,7 @@ var genreIcons={
 
 var data=[],presentData=document.querySelector("#mainData .row");
 var workData=[],titles=[];
-var requestURL ="http://starlord.hackerearth.com/gamesext";
+var requestURL ="/gamesext";
 var request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';
@@ -142,7 +142,7 @@ function whatNow(dataTo) {
 		else
 			classEdu="education3";
 		if(dataTo[i]["editors_choice"]==='Y') {
-			presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'><img src='assets/css/icons/ribbon.svg'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dataTo[i]['genre']+"</h6><div class='belowOne'><h5>"+dataTo[i]['title']+"</h5></div><div><div><span class='stars'>"+dataTo[i].score+"</span></div><div class='circleText'>"+dataTo[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dataTo[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dataTo[i].release_year+"</span></div></div></a></span></div>";
+			presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'><img src='assets/css/icons/ribbon.svg'  title='Editor&rsquo;s choice' alt='Editor&rsquo;s choice'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dataTo[i]['genre']+"</h6><div class='belowOne'><h5>"+dataTo[i]['title']+"</h5></div><div><div><span class='stars'>"+dataTo[i].score+"</span></div><div class='circleText'>"+dataTo[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dataTo[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dataTo[i].release_year+"</span></div></div></a></span></div>";
 		}
 		else 
 			presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dataTo[i]['genre']+"</h6><div class='belowOne'><h5>"+dataTo[i]['title']+"</h5></div><div><div><span class='stars'>"+dataTo[i].score+"</span></div><div class='circleText'>"+dataTo[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dataTo[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dataTo[i].release_year+"</span></div></div></a></span></div>";
@@ -190,7 +190,7 @@ function addLiHtml(dat,len) {
 			else
 				classEdu="education3";
 			if(dat[i]["editors_choice"]==='Y') {
-				presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'><img src='assets/css/icons/ribbon.svg'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dat[i]['genre']+"</h6><div class='belowOne'><h5>"+dat[i]['title']+"</h5></div><div><div><span class='stars'>"+dat[i].score+"</span></div><div class='circleText'>"+dat[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dat[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dat[i].release_year+"</span></div></div></a></span></div>";
+				presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'><img src='assets/css/icons/ribbon.svg' title='Editor&rsquo;s choice' alt='Editor&rsquo;s choice'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dat[i]['genre']+"</h6><div class='belowOne'><h5>"+dat[i]['title']+"</h5></div><div><div><span class='stars'>"+dat[i].score+"</span></div><div class='circleText'>"+dat[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dat[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dat[i].release_year+"</span></div></div></a></span></div>";
 			}
 			else 
 				presentData.innerHTML+="<div class='col-lg-3 col-md-4 col-sm-6'><span><a href='javaScript:void(0)' class='card "+classEdu+"'><div class='starred'></div><div class='circle'><img src='"+pathIcon+"'></div><h6>"+dat[i]['genre']+"</h6><div class='belowOne'><h5>"+dat[i]['title']+"</h5></div><div><div><span class='stars'>"+dat[i].score+"</span></div><div class='circleText'>"+dat[i].score+"</div></div><br><div class='questans'><div class='quest'>Platform: <span class='ans'>"+dat[i].platform+"</span></div><div class='quest'>Release Year: <span class='ans'>"+dat[i].release_year+"</span></div></div></a></span></div>";
